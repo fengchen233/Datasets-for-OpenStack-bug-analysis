@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<bug>
+    <id>#610035</id>
+    <title>New admin create caused bug  by using LDAP</title>
+    <description>
+        <sentence>When a admin user is created,  error is happened.</sentence>
+        <sentence>stdio showed this error:
+Traceback (most recent call last):
+  File &quot;./nova-manage&quot;, line 268, in &lt;module&gt;
+    fn(*argv)
+  File &quot;./nova-manage&quot;, line 125, in admin
+    user = self.manager.create_user(name, access, secret, True)
+  File &quot;/usr/local/lib/python2.6/dist-packages/nova-0.3.0-py2.6.egg/nova/auth/users.py&quot;, line 534, in create_user
+    conn.create_project(user, user, user)
+  File &quot;/usr/local/lib/python2.6/dist-packages/nova-0.3.0-py2.6.egg/nova/auth/users.py&quot;, line 730, in create_project
+    if self.project_exists(name):
+  File &quot;/usr/local/lib/python2.6/dist-packages/nova-0.3.0-py2.6.egg/nova/auth/users.py&quot;, line 698, in project_exists
+    return self.find_project(name) != None
+  File &quot;/usr/local/lib/python2.6/dist-packages/nova-0.3.0-py2.6.egg/nova/auth/users.py&quot;, line 688, in find_project
+    attr = self.find_object(dn, '(objectclass=novaProject)')
+  File &quot;/usr/local/lib/python2.6/dist-packages/nova-0.3.0-py2.6.egg/nova/auth/users.py&quot;, line 621, in find_object
+    objects = self.find_objects(dn, query)
+  File &quot;/usr/local/lib/python2.6/dist-packages/nova-0.3.0-py2.6.egg/nova/auth/users.py&quot;, line 637, in find_objects
+    res = self.conn.search_s(dn, ldap.SCOPE_SUBTREE, query)
+  File &quot;/usr/lib/python2.6/dist-packages/ldap/ldapobject.py&quot;, line 516, in search_s
+    return self.search_ext_s(base,scope,filterstr,attrlist,attrsonly,None,None,timeout=self.timeout)
+  File &quot;/usr/lib/python2.6/dist-packages/ldap/ldapobject.py&quot;, line 509, in search_ext_s
+    msgid = self.search_ext(base,scope,filterstr,attrlist,attrsonly,serverctrls,clientctrls,timeout,sizelimit)
+  File &quot;/usr/lib/python2.6/dist-packages/ldap/ldapobject.py&quot;, line 505, in search_ext
+    timeout,sizelimit,
+  File &quot;/usr/lib/python2.6/dist-packages/ldap/ldapobject.py&quot;, line 96, in _ldap_call
+    result = func(*args,**kwargs)
+ldap.LDAPError: LDAP connection invalid
+I read the auth/users.py.</sentence>
+        <sentence>I think Line.529(If statement) indentation level is not valid.</sentence>
+        <sentence>They needs  deep nesting.</sentence>
+    </description>
+</bug>
