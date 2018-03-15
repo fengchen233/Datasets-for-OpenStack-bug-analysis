@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><bug id="#607186">
+<title>proxy should return 500 on exception</title>
+<description>
+<sentence>The proxy currently responds with a 503 for unhandled exceptions (in the handle_request method).</sentence>
+<sentence>It should be a 500.</sentence>
+</description>
+</bug>
