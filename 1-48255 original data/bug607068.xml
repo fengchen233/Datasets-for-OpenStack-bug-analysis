@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<bug>
+    <id>#607068</id>
+    <title>swift-1.0.0.tar.gz is missing doc directory</title>
+    <description>
+        <sentence>'python setup.py build_sphinx' is not working because the doc directory that exists in trunk is missing from the 1.0.0 tarball:
+[root@server2 src]# wget --quiet http://launchpad.net/swift/1.0/1.0.0/+download/swift-1.0.0.tar.gz
+[root@server2 src]# ls -l swift-1.0.0.tar.gz &amp;&amp; md5sum swift-1.0.0.tar.gz
+-rw-r--r-- 1 root root 155317 Jul 19  2010 swift-1.0.0.tar.gz
+478501fd59ad606b082cb964407f53b3  swift-1.0.0.tar.gz
+[root@server2 src]# tar tzf swift-1.0.0.tar.gz | grep doc
+[root@server2 src]# echo $?</sentence>
+        <sentence>1</sentence>
+    </description>
+</bug>
